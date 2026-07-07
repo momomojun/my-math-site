@@ -1,0 +1,90 @@
+---
+title: 1.6 重要极限与等价无穷小
+---
+
+import { Def, Thm, Rmk, Cor } from '../../../components/MathBlock'
+import { Problem, Solution } from '../../../components/Problem'
+
+# 1.6 重要极限与等价无穷小
+
+## 1.6.1 重要极限
+
+<Thm num={1} title="第一重要极限">
+$$\lim_{x\to 0}\frac{\sin x}{x} = 1.$$
+
+推广：当 $u(x) \to 0$ 时，$\dfrac{\sin u}{u} \to 1$，即 $\sin u \sim u$。
+
+常见变形：$\lim_{x\to 0}\dfrac{\tan x}{x} = 1$，$\lim_{x\to 0}\dfrac{\arcsin x}{x} = 1$，$\lim_{x\to 0}\dfrac{\arctan x}{x} = 1$。
+</Thm>
+
+<Thm num={2} title="第二重要极限">
+$$\lim_{n\to\infty}\!\left(1+\frac{1}{n}\right)^n = e,\qquad \lim_{x\to 0}(1+x)^{1/x} = e.$$
+
+推广：$\lim_{u\to 0}(1+u)^{1/u} = e$，$\lim_{u\to\infty}\!\left(1+\dfrac{a}{u}\right)^u = e^a$。
+
+**幂指型计算法**：若 $\lim f(x) = 1$，$\lim g(x) = \infty$，且 $\lim [f(x)-1]\cdot g(x) = k$，则 $\lim f(x)^{g(x)} = e^k$。
+</Thm>
+
+<Problem num="例 1.6.1">
+计算 $\lim_{x\to\infty}\!\left(\dfrac{x+3}{x-1}\right)^x$。
+
+<Solution>
+$$\left(\frac{x+3}{x-1}\right)^x = \left(1+\frac{4}{x-1}\right)^x.$$
+
+利用幂指型：$[f(x)-1]\cdot g(x) = \dfrac{4}{x-1}\cdot x = \dfrac{4x}{x-1} \to 4$，故
+
+$$\lim_{x\to\infty}\left(\frac{x+3}{x-1}\right)^x = e^4.\;\blacksquare$$
+</Solution>
+</Problem>
+
+## 1.6.2 比较无穷小
+
+<Def num={1} title="无穷小的阶（比较）">
+设 $\alpha, \beta$ 均为 $x \to a$ 时的无穷小：
+
+| 关系 | 条件 | 记号/名称 |
+|------|------|-----------|
+| $\beta$ 是 $\alpha$ 的**高阶**无穷小 | $\lim\dfrac{\beta}{\alpha} = 0$ | $\beta = o(\alpha)$ |
+| $\beta$ 是 $\alpha$ 的**低阶**无穷小 | $\lim\dfrac{\beta}{\alpha} = \infty$ | — |
+| **同阶**无穷小 | $\lim\dfrac{\beta}{\alpha} = c \neq 0$ | — |
+| **等价**无穷小 | $\lim\dfrac{\beta}{\alpha} = 1$ | $\beta \sim \alpha$ |
+| $\beta$ 是 $\alpha$ 的 **$k$ 阶**无穷小 | $\lim\dfrac{\beta}{\alpha^k} = c \neq 0$ | — |
+</Def>
+
+<Thm num={3} title="等价代换定理">
+若 $\alpha \sim \alpha'$，$\beta \sim \beta'$，则（在乘除中）可以替换：
+
+$$\lim\frac{\alpha}{\beta} = \lim\frac{\alpha'}{\beta'}.$$
+
+**常用表**（$x \to 0$）：$\sin x \sim x$，$\tan x \sim x$，$\arcsin x \sim x$，$\arctan x \sim x$，$e^x - 1 \sim x$，$\ln(1+x) \sim x$，$1-\cos x \sim \dfrac{x^2}{2}$，$(1+x)^\alpha - 1 \sim \alpha x$。
+</Thm>
+
+<Rmk>
+**等价代换只在乘除法中有效**。加减中不能随意代换，如 $\tan x - \sin x \not\sim x - x = 0$（实为 $\sim \dfrac{x^3}{2}$）。
+</Rmk>
+
+<Problem num="例 1.6.2">
+计算 $\lim_{x\to 0}\dfrac{(1+x^2)^{1/3} - 1}{\cos x - 1}$。
+
+<Solution>
+当 $x \to 0$：$(1+x^2)^{1/3} - 1 \sim \dfrac{1}{3}x^2$，$\cos x - 1 \sim -\dfrac{x^2}{2}$，故
+
+$$\lim_{x\to 0}\frac{(1+x^2)^{1/3}-1}{\cos x - 1} = \lim_{x\to 0}\frac{\frac{1}{3}x^2}{-\frac{x^2}{2}} = -\frac{2}{3}.\;\blacksquare$$
+</Solution>
+</Problem>
+
+<Problem num="例 1.6.3">
+计算 $\lim_{x\to 0}\dfrac{\sqrt{1+x\sin x} - \cos x}{x^2}$。
+
+<Solution>
+分子分母同为 $x^2$ 阶，利用展开：
+
+$$\sqrt{1+x\sin x} \approx 1 + \frac{x\sin x}{2} \approx 1 + \frac{x^2}{2},\quad \cos x \approx 1 - \frac{x^2}{2}.$$
+
+分子 $\approx \left(1+\dfrac{x^2}{2}\right) - \left(1-\dfrac{x^2}{2}\right) = x^2$，故极限为 $1$。$\blacksquare$
+</Solution>
+</Problem>
+
+---
+
+**下一节：** [1.7 函数的连续性 →](/higher-math/ch1/s7)

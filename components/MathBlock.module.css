@@ -1,0 +1,123 @@
+.block {
+  padding: 15px 20px 18px;
+  border-radius: 4px 10px 10px 4px;
+  margin: 1.2em 0;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.label {
+  font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  background: #fff;
+  padding: 3px 9px;
+  border-radius: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  border-width: 1px;
+  border-style: solid;
+}
+
+:global(.dark) .label {
+  background: transparent;
+}
+
+.title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #2a322d;
+}
+
+:global(.dark) .title {
+  color: #d0d8d2;
+}
+
+.body {
+  font-size: 15px;
+  line-height: 1.85;
+  color: #2c332e;
+}
+
+:global(.dark) .body {
+  color: #c8d4cc;
+}
+
+/* 定义 — 绿 */
+.def {
+  background: #eef4f0;
+  border-color: #dbe8e1;
+  border-left: 3px solid #2f6a52;
+}
+:global(.dark) .def {
+  background: rgba(47, 106, 82, 0.1);
+  border-color: rgba(91, 168, 128, 0.25);
+  border-left: 3px solid #5fa880;
+}
+.def .label { color: #2f6a52; border-color: #2f6a5240; }
+:global(.dark) .def .label { color: #5fa880; border-color: #5fa88040; }
+
+/* 定理 — 蓝 */
+.theorem {
+  background: #eef1f6;
+  border-color: #dce3ec;
+  border-left: 3px solid #3a5d7a;
+}
+:global(.dark) .theorem {
+  background: rgba(58, 93, 122, 0.1);
+  border-color: rgba(104, 153, 191, 0.25);
+  border-left: 3px solid #6899bf;
+}
+.theorem .label { color: #3a5d7a; border-color: #3a5d7a40; }
+:global(.dark) .theorem .label { color: #6899bf; border-color: #6899bf40; }
+
+/* 推论 — 紫 */
+.corollary {
+  background: #f2f0f6;
+  border-color: #e6e1ee;
+  border-left: 3px solid #6a5a86;
+}
+:global(.dark) .corollary {
+  background: rgba(106, 90, 134, 0.1);
+  border-color: rgba(160, 140, 200, 0.25);
+  border-left: 3px solid #a08cc8;
+}
+.corollary .label { color: #6a5a86; border-color: #6a5a8640; }
+:global(.dark) .corollary .label { color: #a08cc8; border-color: #a08cc840; }
+
+/* 命题 — 赭 */
+.proposition {
+  background: #f6f1e8;
+  border-color: #ece2d2;
+  border-left: 3px solid #8a6334;
+}
+:global(.dark) .proposition {
+  background: rgba(138, 99, 52, 0.1);
+  border-color: rgba(200, 160, 100, 0.25);
+  border-left: 3px solid #c8a064;
+}
+.proposition .label { color: #8a6334; border-color: #8a633440; }
+:global(.dark) .proposition .label { color: #c8a064; border-color: #c8a06440; }
+
+/* 注 — 浅绿灰 */
+.remark {
+  background: #f0f4f0;
+  border-color: #d8e4d8;
+  border-left: 3px solid #5a7a5a;
+}
+:global(.dark) .remark {
+  background: rgba(90, 122, 90, 0.08);
+  border-color: rgba(130, 170, 130, 0.2);
+  border-left: 3px solid #82aa82;
+}
+.remark .label { color: #5a7a5a; border-color: #5a7a5a40; }
+:global(.dark) .remark .label { color: #82aa82; border-color: #82aa8240; }

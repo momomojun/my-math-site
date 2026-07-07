@@ -1,0 +1,95 @@
+---
+title: 1.5 整除问题与余数定理
+---
+
+import { Callout } from 'nextra/components'
+
+# 1.5 整除问题与余数定理
+
+## $x^n - 1$ 整除定理
+
+<Callout type="default" emoji="📐">
+**定理**：设 $m, n$ 是正整数，则 $(m, n) = d$ 当且仅当 $(x^m - 1,\ x^n - 1) = x^d - 1$。
+</Callout>
+
+**证明**：
+
+**必要性**（$(m,n)=d \Rightarrow (x^m-1, x^n-1) = x^d-1$）：
+
+*是公因式*：由 $d \mid m$，设 $m = kd$，则
+
+$$x^m - 1 = x^{kd} - 1 = (x^d - 1)(1 + x^d + x^{2d} + \cdots + x^{(k-1)d}),$$
+
+故 $x^d - 1 \mid x^m - 1$，同理 $x^d - 1 \mid x^n - 1$。
+
+*是最大公因式*：设 $(x^m-1, x^n-1) = q(x)$。由于 $x^m-1$ 无重根，$q(x)$ 也无重根，只需证 $q(x)$ 的每个根也是 $x^d - 1$ 的根。
+
+由 $(m,n) = d$，存在整数 $a, b$ 使 $am + bn = d$。设 $x_0$ 是 $q(x)$ 的任一复数根，则 $x_0^m = x_0^n = 1$，故
+
+$$x_0^d = x_0^{am+bn} = (x_0^m)^a (x_0^n)^b = 1.$$
+
+故 $x_0$ 也是 $x^d - 1$ 的根，从而 $q(x) \mid x^d - 1$，即 $(x^m-1, x^n-1) = x^d-1$。
+
+**充分性**：若 $(m,n) = s$，由必要性得 $(x^m-1, x^n-1) = x^s-1$，已知其等于 $x^d-1$，故 $s = d$。$\blacksquare$
+
+## 余数定理
+
+<Callout type="default" emoji="📐">
+**余数定理**：$\alpha$ 是多项式 $f(x)$ 的根的充要条件是 $(x - \alpha) \mid f(x)$。
+</Callout>
+
+## 例题：余数定理的综合应用
+
+**例题 1**：已知 $(x-1) \mid f(x^m)$，证明 $(x^m - 1) \mid f(x^m)$。
+
+**解答**：由 $(x-1) \mid f(x^m)$ 知 1 是 $f(x^m)$ 的根，故 $f(1^m) = f(1) = 0$，即 $(x-1) \mid f(x)$。
+
+将 $x$ 换为 $x^m$，得 $(x^m - 1) \mid f(x^m)$。$\blacksquare$
+
+---
+
+**例题 2**：已知 $(x^2+x+1) \mid f_1(x^3) + xf_2(x^3)$，则 $(x-1) \mid f_1(x)$ 且 $(x-1) \mid f_2(x)$。
+
+**解答**：$x^2+x+1$ 的两根为本原三次单位根 $\omega, \omega^2$（$\omega^3 = 1$），代入得
+
+$$\begin{cases} f_1(\omega^3) + \omega f_2(\omega^3) = f_1(1) + \omega f_2(1) = 0, \\ f_1(\omega^6) + \omega^2 f_2(\omega^6) = f_1(1) + \omega^2 f_2(1) = 0. \end{cases}$$
+
+由于 $\omega \neq \omega^2$，方程组系数行列式 $\omega^2 - \omega \neq 0$，解出 $f_1(1) = f_2(1) = 0$，
+
+即 $(x-1) \mid f_1(x)$，$(x-1) \mid f_2(x)$。$\blacksquare$
+
+---
+
+**例题 3**：已知 $f(x), g(x)$ 是次数不超过 3 的首 1 互异多项式，且 $x^4 + x^2 + 1 \mid f(x^3) + x^4 g(x^3)$，求 $(f(x), g(x))$。
+
+**解答**：注意 $x^6 - 1 = (x^2-1)(x^4+x^2+1)$，故 $x^4+x^2+1$ 的根是 $x^6 = 1$ 但 $x^2 \neq 1$ 的根，即 $\omega, \omega^2, \omega^4, \omega^5$（$\omega = e^{2\pi i/6}$，$\omega^3 = -1$，$\omega^6 = 1$）。
+
+代入四个根，利用 $\omega^3 = -1, \omega^6 = 1$：
+
+$$\begin{cases} f(-1) + \omega^4 g(-1) = 0, \\ f(1) + \omega^2 g(1) = 0, \\ f(1) + \omega^4 g(1) = 0, \\ f(-1) + \omega^2 g(-1) = 0. \end{cases}$$
+
+由第 2、3 式：$(\omega^2 - \omega^4)g(1) = 0$，因 $\omega^2 \neq \omega^4$，故 $g(1) = 0$，代回得 $f(1) = 0$。
+
+由第 1、4 式：$(\omega^4 - \omega^2)g(-1) = 0$，故 $g(-1) = 0$，代回得 $f(-1) = 0$。
+
+因此 $f(x)$ 与 $g(x)$ 都有根 $1$ 和 $-1$，即 $(x-1)(x+1) \mid f(x)$ 且 $(x-1)(x+1) \mid g(x)$。
+
+由于 $f, g$ 最高次为 3 且首 1，设 $f(x) = (x^2-1)(x-a)$，$g(x) = (x^2-1)(x-b)$（$a \neq b$）。
+
+故 $(f(x), g(x)) = x^2 - 1$。$\blacksquare$
+
+---
+
+## 习题
+
+**习题 1**：证明 $x^d - 1 \mid x^n - 1$ 的充要条件是 $d \mid n$。
+
+**习题 2**：已知 $x^2 + 1 \mid f_1(x^4) + xf_2(x^4)$，证明 1 是 $f_1(x)$ 与 $f_2(x)$ 的公共根。
+
+**习题 3**：证明对任意正整数 $m, n, p$，都有
+
+$$x^2 + x + 1 \mid x^{3m} + x^{3n+1} + x^{3p+2}.$$
+
+---
+
+**下一节：** [1.6 不可约因式 →](/advanced-algebra/irreducible)

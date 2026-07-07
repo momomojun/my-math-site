@@ -1,0 +1,102 @@
+---
+title: 1.4 最大公因式与互素性
+---
+
+import { Callout } from 'nextra/components'
+
+# 1.4 最大公因式与互素性
+
+## 最大公因式
+
+<Callout type="info" emoji="📌">
+**定义（最大公因式）**：$K[x]$ 中多项式 $f(x)$ 与 $g(x)$ 的一个公因式 $d(x)$，若对 $f(x)$ 与 $g(x)$ 的任意公因式 $c(x)$ 都有 $c(x) \mid d(x)$，则称 $d(x)$ 是 $f(x)$ 与 $g(x)$ 的一个**最大公因式**，记作 $(f(x), g(x))$。
+</Callout>
+
+## Bezout 定理
+
+<Callout type="default" emoji="📐">
+**Bezout 定理**：对于 $K[x]$ 中任意两个多项式 $f(x), g(x)$，存在最大公因式 $d(x)$ 及 $u(x), v(x) \in K[x]$，使得
+
+$$d(x) = u(x)f(x) + v(x)g(x).$$
+
+**推论**：若 $s(x) = u(x)f(x) + v(x)g(x)$ 本身是 $f, g$ 的公因式，则 $s(x)$ 就是它们的最大公因式。
+</Callout>
+
+<Callout type="default" emoji="📐">
+**命题 1**：设 $f(x), g(x)$ 均非零，$h(x)$ 首项系数为 1，则
+
+$$(f(x), g(x)) = d(x) \iff (f(x)h(x),\ g(x)h(x)) = d(x)h(x).$$
+</Callout>
+
+## 互素性与关键命题
+
+<Callout type="default" emoji="📐">
+**命题 2**：设 $(f(x), g(x)) = 1$，则：
+1. 若 $f(x) \mid g(x)h(x)$，则 $f(x) \mid h(x)$；
+2. 若 $f(x) \mid h(x)$ 且 $g(x) \mid h(x)$，则 $f(x)g(x) \mid h(x)$。
+</Callout>
+
+<Callout type="default" emoji="📐">
+**命题 3（唯一线性组合）**：若 $f(x), g(x)$ 是次数大于零的互素多项式，则存在唯一的 $u(x), v(x)$ 满足
+
+$$u(x)f(x) + v(x)g(x) = 1, \quad \partial(u) < \partial(g),\quad \partial(v) < \partial(f).$$
+</Callout>
+
+## 例题：公用最大公因式
+
+**例题 1**：已知 $f(x), g(x) \in P[x]$，$a,b,c,d \in P$ 满足 $ad - bc \neq 0$，则
+
+$$(f(x), g(x)) = (af(x)+bg(x),\ cf(x)+dg(x)).$$
+
+**解答**：记 $d_1 = (f,g)$，$d_2 = (af+bg,\ cf+dg)$。
+
+- $d_1 \mid f, g \Rightarrow d_1 \mid af+bg,\ cf+dg \Rightarrow d_1 \mid d_2$。
+
+- 由 $ad - bc \neq 0$ 可逆，还原：
+
+$$f = \frac{d(af+bg) - b(cf+dg)}{ad-bc}, \quad g = \frac{a(cf+dg) - c(af+bg)}{ad-bc}.$$
+
+故 $d_2 \mid f, g \Rightarrow d_2 \mid d_1$。
+
+综合得 $d_1 = d_2$。$\blacksquare$
+
+---
+
+**例题 2**：设多项式 $f_1(x), f_2(x)$ 都与 $g_1(x), g_2(x)$ 互素，则
+
+$$(f_1(x)g_1(x),\ f_2(x)g_2(x)) = (f_1(x), f_2(x))(g_1(x), g_2(x)).$$
+
+**解答**：令 $d = (f_1g_1, f_2g_2)$，$d_1 = (f_1, f_2)$，$d_2 = (g_1, g_2)$。
+
+**(1)** 显然 $d_1 \mid d$，$d_2 \mid d$；
+
+**(2)** 由 $(f_1, g_1) = 1$ 知 $(d_1, d_2) = 1$，故 $d_1 d_2 \mid d$；
+
+**(3)** 由 $d \mid f_1 g_1$，设 $d = fg$（$f \mid f_1, g \mid g_1$）；
+
+由 $(f_1, g_2) = 1$ 知 $(f, g_2) = 1$，结合 $f \mid d \mid f_2 g_2$ 得 $f \mid f_2$，故 $f \mid d_1$；
+
+同理 $g \mid d_2$，故 $d \mid d_1 d_2$；
+
+**(4)** 因 $d, d_1, d_2$ 均首一，故 $d = d_1 d_2$。$\blacksquare$
+
+---
+
+## 习题
+
+**习题 1**：已知 $(f(x), g(x)) = 1$，证明：
+1. $(f(x), f(x)+g(x)) = 1$，$(g(x), f(x)+g(x)) = 1$
+2. $(f(x)g(x), f(x)+g(x)) = 1$
+
+**习题 2（最小公倍式）**：证明若 $f(x), g(x)$ 是两个首 1 多项式，则
+
+$$[f(x), g(x)] = \frac{f(x)g(x)}{(f(x), g(x))}.$$
+
+**习题 3（辗转相除）**：对以下各对多项式，求 $(f(x), g(x))$ 并找出 $u, v$ 使 $uf+vg=(f,g)$：
+
+- $f = x^4 + 3x^3 - x^2 - 4x - 3$，$g = 3x^3 + 10x^2 + 2x - 3$
+- $f = x^4 + 3x - 2$，$g = 3x^3 - x^2 - 7x + 4$
+
+---
+
+**下一节：** [1.5 整除问题与余数定理 →](/advanced-algebra/divisibility)

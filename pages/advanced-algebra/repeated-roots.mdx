@@ -1,0 +1,85 @@
+---
+title: 1.7 重因式与导数
+---
+
+import { Callout } from 'nextra/components'
+
+# 1.7 重因式与导数
+
+## 重因式的基本性质
+
+<Callout type="default" emoji="📐">
+设 $f(x)$ 是次数大于零的多项式，则：
+
+1. 若不可约多项式 $p(x)$ 是 $f(x)$ 的 $k\ (k \geq 1)$ 重因式，则 $p(x)$ 是 $f'(x)$ 的 $k-1$ 重因式；
+
+2. **充要条件**：$x_0$ 是 $f(x)$ 的 $k$ 重根 $\iff f(x_0) = f'(x_0) = \cdots = f^{(k-1)}(x_0) = 0$ 且 $f^{(k)}(x_0) \neq 0$；
+
+3. 不可约多项式 $p(x)$ 是 $f(x)$ 的**重因式** $\iff p(x)$ 是 $f(x)$ 与 $f'(x)$ 的公因式；
+
+4. $f(x)$ **无重因式** $\iff (f(x), f'(x)) = 1$；
+
+5. $\dfrac{f(x)}{(f(x), f'(x))}$ 是 $f(x)$ 的所有不可约因式（重数均为 1）之积的常数倍。
+</Callout>
+
+<Callout type="warning" emoji="⚠️">
+**注意**：
+- 无重因式则无重根；有重因式**未必**有重根（与数域有关）
+- 已知 $x_0$ 是 $f'(x)$ 的 $k$ 重根，**不能**直接得到 $x_0$ 是 $f(x)$ 的 $k+1$ 重根；但若再加上"$x_0$ 是 $f(x)$ 的根"，则可得 $x_0$ 是 $f(x)$ 的 $k+1$ 重根。
+</Callout>
+
+## 例题：证明无重根
+
+**例题 1**：证明 $f(x) = 1 + x + \dfrac{x^2}{2!} + \cdots + \dfrac{x^n}{n!}$ 没有重根。
+
+**解答**：$f'(x) = 1 + x + \dfrac{x^2}{2!} + \cdots + \dfrac{x^{n-1}}{(n-1)!}$，故
+
+$$f(x) - f'(x) = \frac{x^n}{n!}.$$
+
+利用性质 4：
+
+$$\bigl(f(x), f'(x)\bigr) = \bigl(f(x),\ f(x) - f'(x)\bigr) = \left(f(x),\ \frac{x^n}{n!}\right) = \bigl(f(x),\ x^n\bigr) = x^k.$$
+
+但 $f(0) = 1 \neq 0$，故 $x \nmid f(x)$，所以 $k = 0$，即 $(f(x), f'(x)) = 1$，$f(x)$ 无重根。$\blacksquare$
+
+---
+
+**习题**：证明 $f(x) = x^n + nx^{n-1} + n(n-1)x^{n-2} + \cdots + n!$ 没有重根。
+
+## 例题：证明只有 $k$ 重根
+
+**例题 2**：已知 $x_0$ 是 $f'''(x)$ 的 $k$ 重根，则 $x_0$ 是
+
+$$F(x) = \frac{x - x_0}{2}\bigl[f'(x) + f'(x_0)\bigr] - f(x) + f(x_0)$$
+
+的 $k+3$ 重根。
+
+**解答**：逐阶求导：
+
+$$F(x_0) = 0.$$
+
+$$F'(x) = \frac{1}{2}\bigl(f'(x) + f'(x_0)\bigr) + \frac{x - x_0}{2}f''(x) - f'(x) = \frac{x-x_0}{2}f''(x) - \frac{f'(x) - f'(x_0)}{2},$$
+
+故 $F'(x_0) = 0$（注意 $f'(x_0) - f'(x_0) = 0$）。
+
+$$F''(x) = \frac{1}{2}f''(x) + \frac{x-x_0}{2}f'''(x) - \frac{f''(x)}{2} = \frac{x - x_0}{2}f'''(x),$$
+
+故 $F''(x_0) = 0$。
+
+因 $x_0$ 是 $f'''(x)$ 的 $k$ 重根，故 $x_0$ 是 $F''(x)$ 的 $k+1$ 重根，且 $F''(x_0) = 0 \Rightarrow x_0$ 是 $F'(x)$ 的 $k+2$ 重根，且 $F'(x_0) = 0 \Rightarrow x_0$ 是 $F(x)$ 的 $k+3$ 重根。$\blacksquare$
+
+---
+
+**例题 3**：已知 $f(x)$ 是 $n$ 次多项式且 $f'(x) \mid f(x)$，证明 $f(x)$ 只有一个 $n$ 重根。
+
+**解答**：在复数域上设 $f(x) = c\, p_1^{k_1}(x) \cdots p_s^{k_s}(x)$，其中 $p_i$ 两两互素的一次因式，$\sum k_i = n$。
+
+则 $f'(x) = d\, p_1^{k_1-1}(x) \cdots p_s^{k_s-1}(x) g(x)$，其中 $(g(x), p_i(x)) = 1$。
+
+由 $f'(x) \mid f(x)$ 知 $g(x) \mid p_1(x) \cdots p_s(x)$，故 $g(x) = 1$（因为 $g$ 与每个 $p_i$ 互素）。
+
+故 $\partial(f'/f') = 1$，即 $\partial(p_1 \cdots p_s) = 1$，从而 $s = 1$，$f(x) = c\, p_1^n(x)$，只有一个 $n$ 重根。$\blacksquare$
+
+---
+
+**下一节：** [1.8 多项式根的有限性 →](/advanced-algebra/finite-roots)

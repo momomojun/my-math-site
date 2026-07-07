@@ -1,0 +1,73 @@
+---
+title: 1.9 多项式分解问题
+---
+
+import { Callout } from 'nextra/components'
+
+# 1.9 多项式分解问题
+
+## $x^n - 1$ 的分解
+
+记 $\omega = \cos\dfrac{2\pi}{n} + i\sin\dfrac{2\pi}{n}$（$n$ 次本原单位根），则 $\omega^n = 1$。
+
+**复数域上**：
+
+$$x^n - 1 = (x-1)(x-\omega)(x-\omega^2)\cdots(x-\omega^{n-1}).$$
+
+$$1 + x + x^2 + \cdots + x^{n-1} = (x-\omega)(x-\omega^2)\cdots(x-\omega^{n-1}).$$
+
+**实数域上**（共轭根合并）：$(x-\omega^k)(x-\omega^{n-k}) = x^2 - 2x\cos\dfrac{2k\pi}{n} + 1$。
+
+<Callout type="default" emoji="📐">
+当 $n = 2m+1$ 时：
+
+$$x^{2m+1} - 1 = (x-1)\prod_{k=1}^{m}\left(x^2 - 2x\cos\frac{2k\pi}{2m+1} + 1\right).$$
+
+当 $n = 2m$ 时：
+
+$$x^{2m} - 1 = (x-1)(x+1)\prod_{k=1}^{m-1}\left(x^2 - 2x\cos\frac{k\pi}{m} + 1\right).$$
+</Callout>
+
+## $x^n + 1$ 的分解
+
+$x^n + 1$ 的根为 $\omega_k = \cos\dfrac{(2k+1)\pi}{n} + i\sin\dfrac{(2k+1)\pi}{n}$（$k = 0, 1, \ldots, n-1$）。
+
+**实数域上**（共轭根合并）：$(x-\omega_k)(x-\omega_{n-k-1}) = x^2 - 2x\cos\dfrac{(2k+1)\pi}{n} + 1$。
+
+<Callout type="default" emoji="📐">
+当 $n = 2m+1$ 时：
+
+$$x^{2m+1} + 1 = (x+1)\prod_{k=0}^{m-1}\left(x^2 - 2x\cos\frac{(2k+1)\pi}{2m+1} + 1\right).$$
+
+当 $n = 2m$ 时：
+
+$$x^{2m} + 1 = \prod_{k=0}^{m-1}\left(x^2 - 2x\cos\frac{(2k+1)\pi}{2m} + 1\right).$$
+</Callout>
+
+## 平方和表示
+
+**例题**：设实系数多项式 $f(x)$ 满足 $a_n > 0$ 且无实根，证明存在实系数多项式 $g(x), h(x)$ 使得 $f(x) = g^2(x) + h^2(x)$。
+
+**解答**：若 $\partial f = 0$，由 $a_n > 0$ 知结论显然成立。
+
+设 $\partial f > 0$，由于 $f(x)$ 无实根，在复数域上
+
+$$f(x) = a_n(x - c_1)(x - \bar{c}_1)\cdots(x - c_s)(x - \bar{c}_s).$$
+
+令 $(x-c_1)(x-c_2)\cdots(x-c_s) = \phi_1(x) + i\phi_2(x)$，其中 $\phi_1, \phi_2 \in \mathbb{R}[x]$，则
+
+$$(x-\bar{c}_1)\cdots(x-\bar{c}_s) = \phi_1(x) - i\phi_2(x).$$
+
+故
+
+$$f(x) = a_n\bigl(\phi_1(x)+i\phi_2(x)\bigr)\bigl(\phi_1(x)-i\phi_2(x)\bigr) = a_n\bigl(\phi_1^2(x) + \phi_2^2(x)\bigr)$$
+
+$$= \bigl(\sqrt{a_n}\,\phi_1(x)\bigr)^2 + \bigl(\sqrt{a_n}\,\phi_2(x)\bigr)^2. \quad \blacksquare$$
+
+---
+
+**习题**：设 $f(x) = a_n x^n + \cdots + a_0$（$a_n \neq 0$）为实系数多项式，且对任意实数 $c$ 有 $f(c) \geq 0$，证明存在实系数多项式 $g(x), h(x)$ 使得 $f(x) = g^2(x) + h^2(x)$。
+
+---
+
+**本章完结。** [← 返回高等代数概览](/advanced-algebra)

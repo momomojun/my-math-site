@@ -1,0 +1,65 @@
+---
+title: 1.6 不可约因式
+---
+
+import { Callout } from 'nextra/components'
+
+# 1.6 不可约因式
+
+## 反证互素
+
+**例题 1**：已知 $(f(x), g(x)) = 1$，$(f(x), h(x)) = 1$，则 $(f(x),\ g(x)h(x)) = 1$。
+
+**解答**：反证法。假设 $(f(x), g(x)h(x)) \neq 1$，则存在不可约公因式 $q(x)$，使得 $q(x) \mid f(x)$ 且 $q(x) \mid g(x)h(x)$。
+
+由 $q(x)$ 不可约，故 $q(x) \mid g(x)$ 或 $q(x) \mid h(x)$（不可约多项式的素性质）。
+
+- 若 $q(x) \mid g(x)$：则 $q(x)$ 是 $f(x), g(x)$ 的公因式，与 $(f,g)=1$ 矛盾；
+- 若 $q(x) \mid h(x)$：则与 $(f,h)=1$ 矛盾。
+
+故假设不成立，$(f(x), g(x)h(x)) = 1$。$\blacksquare$
+
+---
+
+## 习题
+
+**习题 1**：已知 $(f(x), g(x)) = 1$，证明 $(f(x)g(x),\ f(x)+g(x)) = 1$。
+
+**习题 2**：设 $f_1(x), \ldots, f_s(x)$ 与 $g_1(x), \ldots, g_t(x)$ 满足 $(f_i(x), g_j(x)) = 1$（对所有 $i, j$），则
+
+$$(f_1(x)\cdots f_s(x),\ g_1(x)\cdots g_t(x)) = 1.$$
+
+**习题 3**：设多项式 $f_1, \ldots, f_s$ 两两互素，记 $F_i = \prod_{j \neq i} f_j$，证明 $(F_1, F_2, \ldots, F_s) = 1$。
+
+---
+
+## 反证不可约
+
+**例题 2**：设次数大于零的多项式 $p(x)$ 满足：对任意 $f(x), g(x)$，由 $p(x) \mid f(x)g(x)$ 可推出 $p(x) \mid f(x)$ 或 $p(x) \mid g(x)$，则 $p(x)$ 是不可约多项式。
+
+**解答**：反证法。若 $p(x)$ 可约，则存在次数大于零的 $f(x), g(x)$ 使 $p(x) = f(x)g(x)$，
+
+此时 $p(x) \mid f(x)g(x)$，但 $\partial(p) > \partial(f)$ 故 $p(x) \nmid f(x)$，同理 $p(x) \nmid g(x)$，矛盾。$\blacksquare$
+
+---
+
+**例题 3**：设 $f(x)$ 是次数大于零的首 1 多项式，证明 $f(x)$ 是一个不可约多项式的方幂，当且仅当对任意多项式 $g(x)$，必有 $(f(x), g(x)) = 1$ 或存在正整数 $m$ 使得 $f(x) \mid g^m(x)$。
+
+**解答**：
+
+$(\Rightarrow)$ 设 $f(x) = p^k(x)$，$p(x)$ 首 1 不可约，对任意 $g(x)$：
+
+- 若 $g(x)$ 不含因式 $p(x)$，则 $(f(x), g(x)) = 1$；
+- 若 $g(x)$ 含因式 $p^s(x)$，取 $m = \left\lfloor\dfrac{k}{s}\right\rfloor + 1$，则 $ms > k$，故 $f(x) \mid g^m(x)$。
+
+$(\Leftarrow)$ 反证法。设 $f(x) = p_1^{k_1}(x) p_2^{s_2}(x) h(x)$，其中 $p_1, p_2$ 互素且不可约。
+
+取 $g(x) = p_1(x)$：$(f, g) = p_1(x) \neq 1$；
+
+又 $(p_1, p_2) = 1$ 故 $p_2 \nmid g^m$ 对任意 $m$，从而 $f \nmid g^m$，矛盾。
+
+故 $f(x)$ 是不可约多项式的方幂。$\blacksquare$
+
+---
+
+**下一节：** [1.7 重因式与导数 →](/advanced-algebra/repeated-roots)

@@ -1,0 +1,83 @@
+---
+title: 1.7 函数的连续性
+---
+
+import { Def, Thm, Rmk, Cor } from '../../../components/MathBlock'
+import { Problem, Solution } from '../../../components/Problem'
+
+# 1.7 函数的连续性
+
+## 1.7.1 连续性与间断点
+
+<Def num={1} title="连续">
+若 $\lim_{x\to a}f(x) = f(a)$（三个条件同时成立：极限存在、$f(a)$ 有定义、两者相等），则称 $f$ 在点 $a$ **连续**。等价条件：$\lim_{\Delta x\to 0}\Delta y = 0$。
+</Def>
+
+<Def num={2} title="间断点的分类">
+若 $f$ 在点 $a$ 不连续，则 $a$ 为**间断点**：
+
+- **第一类**（左右极限均存在）：
+  - 可去间断点：$f(a^-) = f(a^+) \neq f(a)$（或 $f(a)$ 未定义）
+  - 跳跃间断点：$f(a^-) \neq f(a^+)$
+- **第二类**（至少一侧极限不存在）：
+  - 无穷间断点：极限为 $\pm\infty$
+  - 振荡间断点：如 $\sin\tfrac{1}{x}$ 在 $x=0$
+</Def>
+
+<Problem num="例 1.7.1">
+指出 $f(x) = \dfrac{(x^2-1)\sin\frac{1}{x-2}}{(x-1)(x-2)}$ 的全部间断点并分类。
+
+<Solution>
+间断点在 $x = 0, 1, 2$（分母为零或 $\sin\frac{1}{x-2}$ 在 $x=2$ 振荡）。
+
+$x = 0$：$f(0)$ 未定义，$\lim_{x\to 0}f(x) = \lim\dfrac{(x^2-1)\sin\frac{1}{x-2}}{(x-1)(x-2)} = \lim\dfrac{(x+1)\sin\frac{1}{x-2}}{x-2}$，$x\to 0$ 时 $\sin\frac{1}{x-2}\to\sin(-\frac{1}{2})$（有定值），故极限存在，为**可去间断点**。
+
+$x = 1$：$\lim_{x\to 1}\dfrac{(x+1)\sin\frac{1}{x-2}}{x-2} = \dfrac{2\sin(-1)}{-1} = 2\sin 1$，极限存在，为**可去间断点**。
+
+$x = 2$：$\sin\dfrac{1}{x-2}$ 在 $x\to 2$ 时振荡不存在，为**振荡间断点**（第二类）。$\blacksquare$
+</Solution>
+</Problem>
+
+## 1.7.2 连续函数运算性质
+
+<Thm num={1} title="连续函数的运算">
+连续函数的和、差、积（商，分母非零）及复合仍连续。**初等函数在其定义域上连续**。
+</Thm>
+
+## 1.7.3 连续函数的最值
+
+<Thm num={2} title="最值定理">
+若 $f \in C[a,b]$（在有界闭区间上连续），则 $f$ 在 $[a,b]$ 上取到最大值 $M$ 与最小值 $m$。
+</Thm>
+
+## 1.7.4 连续函数的介值性
+
+<Thm num={3} title="介值定理">
+若 $f \in C[a,b]$，$m = \min f$，$M = \max f$，则 $\forall\,\mu \in [m,M]$，$\exists\,\xi \in [a,b]$ 使 $f(\xi)=\mu$。
+</Thm>
+
+<Cor num={1} title="零点定理">
+若 $f \in C[a,b]$ 且 $f(a)\cdot f(b) < 0$，则 $\exists\,\xi \in (a,b)$ 使 $f(\xi) = 0$。
+</Cor>
+
+## 1.7.5 连续函数复合的单调性
+
+<Thm num={4} title="复合函数单调性">
+若 $f$ 单调递增，$g$ 单调递增，则 $f \circ g$ 单调递增（同向）；若一增一减，则复合单调递减（反向）。
+</Thm>
+
+<Problem num="例 1.7.2">
+证明方程 $x^5 - 3x = 1$ 在 $(1, 2)$ 内至少有一个实根。
+
+<Solution>
+令 $f(x) = x^5 - 3x - 1$，$f \in C[1,2]$。
+
+$f(1) = 1 - 3 - 1 = -3 < 0$，$f(2) = 32 - 6 - 1 = 25 > 0$。
+
+由零点定理，$\exists\,\xi \in (1,2)$ 使 $f(\xi) = 0$，即 $\xi^5 - 3\xi = 1$。$\blacksquare$
+</Solution>
+</Problem>
+
+---
+
+**下一节：** [1.8 一致连续 →](/higher-math/ch1/s8)

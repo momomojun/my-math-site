@@ -1,0 +1,114 @@
+---
+title: 概率基础
+---
+
+import { Def, Thm, Rmk } from '../../components/MathBlock'
+import { Problem, Solution } from '../../components/Problem'
+
+# 第一章 · 概率基础
+
+## § 1.1 概率空间
+
+<Def num={1} title="概率空间">
+一个**概率空间**由三元组 $(\Omega,\mathcal{F},P)$ 构成：
+
+- **样本空间** $\Omega$：所有可能结果的集合；
+- **事件域** $\mathcal{F}$：$\Omega$ 的子集构成的 $\sigma$-代数；
+- **概率测度** $P:\mathcal{F}\to[0,1]$，满足 Kolmogorov 三公理。
+</Def>
+
+<Thm num={1} title="Kolmogorov 三公理">
+1. **非负性**：$P(A)\geq 0$；
+2. **规范性**：$P(\Omega)=1$；
+3. **可数可加性**：若 $A_1,A_2,\ldots$ 两两互斥，则 $P\!\left(\bigcup_{i=1}^\infty A_i\right)=\sum_{i=1}^\infty P(A_i)$。
+</Thm>
+
+---
+
+## § 1.2 条件概率与独立性
+
+<Def num={2} title="条件概率">
+在 $P(B)>0$ 的条件下：
+
+$$P(A\mid B)=\frac{P(A\cap B)}{P(B)}.$$
+</Def>
+
+<Def num={3} title="独立性">
+若 $P(A\cap B)=P(A)P(B)$，则称事件 $A$ 与 $B$ **独立**。等价地，$P(A\mid B)=P(A)$。
+</Def>
+
+<Rmk>
+**独立 $\neq$ 互斥**：互斥事件（$A\cap B=\emptyset$）若各自概率均正，则一定**不独立**（因为 $P(A|B)=0\neq P(A)$）。
+</Rmk>
+
+---
+
+## § 1.3 全概率公式与贝叶斯定理
+
+<Thm num={2} title="全概率公式">
+若 $B_1,\ldots,B_n$ 构成 $\Omega$ 的一个**完备划分**（两两互斥且 $\bigcup B_i=\Omega$），则
+
+$$P(A)=\sum_{i=1}^n P(A\mid B_i)\,P(B_i).$$
+</Thm>
+
+<Thm num={3} title="贝叶斯定理">
+在全概率公式的条件下：
+
+$$P(B_i\mid A)=\frac{P(A\mid B_i)\,P(B_i)}{\displaystyle\sum_{j=1}^n P(A\mid B_j)\,P(B_j)}.$$
+
+| 名称 | 符号 | 含义 |
+|------|------|------|
+| **先验概率** | $P(B_i)$ | 观测前对 $B_i$ 的信念 |
+| **似然** | $P(A\mid B_i)$ | $B_i$ 为真时观测到 $A$ 的概率 |
+| **后验概率** | $P(B_i\mid A)$ | 观测到 $A$ 后的修正信念 |
+</Thm>
+
+<Problem num="例题 1">
+某疾病患病率为 1%，检测灵敏度（患病时阳性）为 99%，特异度（未患病时阴性）为 95%。若结果阳性，求真正患病的概率。
+
+<Solution>
+设 $D$=患病，$T$=阳性，则 $P(D)=0.01$，$P(T|D)=0.99$，$P(T|\neg D)=0.05$。
+
+全概率：
+
+$$P(T)=0.99\times 0.01+0.05\times 0.99=0.0099+0.0495=0.0594.$$
+
+贝叶斯：
+
+$$P(D\mid T)=\frac{0.99\times 0.01}{0.0594}\approx 16.7\%.$$
+
+**结论**：即使阳性，患病概率仅约 16.7%，远低于直觉（99%）。**基准率（先验概率）极为重要**。$\blacksquare$
+</Solution>
+</Problem>
+
+<Problem num="例题 2">
+甲袋：3 白 2 黑；乙袋：2 白 3 黑。随机取一袋再取一球得白球，求来自甲袋的概率。
+
+<Solution>
+设 $B_1$=取甲袋，$B_2$=取乙袋，$A$=取到白球。
+
+$$P(A\mid B_1)=\frac{3}{5},\quad P(A\mid B_2)=\frac{2}{5},\quad P(B_1)=P(B_2)=\frac{1}{2}.$$
+
+$$P(A)=\frac{1}{2}\cdot\frac{3}{5}+\frac{1}{2}\cdot\frac{2}{5}=\frac{1}{2}.$$
+
+$$P(B_1\mid A)=\frac{P(A\mid B_1)P(B_1)}{P(A)}=\frac{\frac{3}{5}\cdot\frac{1}{2}}{\frac{1}{2}}=\frac{3}{5}.\;\blacksquare$$
+</Solution>
+</Problem>
+
+<Rmk>
+**概率论在 AI 中**：贝叶斯定理是朴素贝叶斯分类器的核心；最大似然估计（MLE）等价于先验均匀时的后验最大化；交叉熵损失等价于最小化 KL 散度（负对数似然）。
+</Rmk>
+
+---
+
+## 习题
+
+1. 工厂三条流水线产量占比 50%/30%/20%，次品率 2%/3%/4%。取到次品，求来自第三条的概率。
+
+2. 设 $P(A)=0.4$，$P(B)=0.3$，$P(A\cup B)=0.6$，求 $P(A\mid B)$ 与 $P(B\mid A)$。
+
+3. 构造反例说明：两两独立的事件组，未必相互独立。
+
+---
+
+**下一节：** [随机变量 →](/probability/random-variables)

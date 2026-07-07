@@ -1,0 +1,68 @@
+---
+title: 1.1 映射与函数
+---
+
+import { Def, Thm, Rmk } from '../../../components/MathBlock'
+import { Problem, Solution } from '../../../components/Problem'
+
+# 1.1 映射与函数
+
+## 映射
+
+<Def num={1} title="映射">
+设 $X, Y$ 是两个非空集合，若存在法则 $f$，使 $X$ 中每个元素 $x$ 在 $Y$ 中有**唯一**确定的元素 $y$ 与之对应，则称 $f$ 为从 $X$ 到 $Y$ 的**映射**，记作 $f: X \to Y$。
+
+- $y = f(x)$ 称为 $x$ 的**像**，$x$ 称为 $y$ 的**原像**
+- $X$ 为**定义域** $D_f$；$R_f = f(X) \subseteq Y$ 为**值域**
+- 若 $R_f = Y$：满射；若不同元素有不同像：单射；二者兼具：双射（一一映射）
+</Def>
+
+## 函数
+
+<Def num={2} title="函数">
+设 $D \subset \mathbb{R}$，称映射 $f: D \to \mathbb{R}$ 为定义在 $D$ 上的**函数**，记作 $y = f(x)$，$x \in D$。
+$D$ 为**定义域**，$R_f = f(D)$ 为**值域**。
+</Def>
+
+<Def num={3} title="复合函数">
+设 $u = g(x)$（$x \in D_g$）且 $R_g \subseteq D_f$，则 $y = f[g(x)]$（$x \in D_g$）称为 $f$ 与 $g$ 的**复合函数**，$u$ 为**中间变量**。
+</Def>
+
+<Def num={4} title="反函数">
+若 $f: D \to R_f$ 为单射，则可定义**反函数** $f^{-1}: R_f \to D$，满足 $f^{-1}(y) = x \iff f(x) = y$。$y = f(x)$ 与 $y = f^{-1}(x)$ 的图像关于直线 $y = x$ 对称。
+</Def>
+
+<Rmk>
+判断奇偶性的前提：定义域**关于原点对称**。奇函数：$f(-x) = -f(x)$；偶函数：$f(-x) = f(x)$。
+</Rmk>
+
+## 例题
+
+<Problem num="例 1.1.1">
+求 $f(x) = \ln(x + \sqrt{x^2 + 1})$ 的定义域与奇偶性，并求反函数。
+
+<Solution>
+**定义域**：$x + \sqrt{x^2+1} > 0$ 对一切 $x \in \mathbb{R}$ 成立（因 $\sqrt{x^2+1} > |x| \geq -x$），故 $D_f = \mathbb{R}$。
+
+**奇偶性**：$f(-x) = \ln(-x + \sqrt{x^2+1})$。注意到
+$$(-x + \sqrt{x^2+1})(x + \sqrt{x^2+1}) = x^2 + 1 - x^2 = 1,$$
+故 $-x + \sqrt{x^2+1} = \dfrac{1}{x + \sqrt{x^2+1}}$，即 $f(-x) = -f(x)$，$f$ 为**奇函数**。
+
+**反函数**：由 $y = \ln(x + \sqrt{x^2+1})$ 得 $e^y = x + \sqrt{x^2+1}$，$e^{-y} = -x + \sqrt{x^2+1}$，相减得
+$$x = \frac{e^y - e^{-y}}{2},\quad\text{故}\quad f^{-1}(x) = \frac{e^x - e^{-x}}{2} = \sinh x.\;\blacksquare$$
+</Solution>
+</Problem>
+
+<Problem num="例 1.1.2">
+设 $f(x) = \dfrac{x}{1+x}$，求 $f[f(x)]$ 和 $f\!\left[\dfrac{1}{f(x)}\right]$。
+
+<Solution>
+$f[f(x)] = f\!\left(\dfrac{x}{1+x}\right) = \dfrac{\frac{x}{1+x}}{1 + \frac{x}{1+x}} = \dfrac{x}{1+2x}$（$x \neq -\dfrac{1}{2}$）。
+
+$\dfrac{1}{f(x)} = \dfrac{1+x}{x}$，故 $f\!\left[\dfrac{1}{f(x)}\right] = f\!\left(\dfrac{1+x}{x}\right) = \dfrac{\frac{1+x}{x}}{1 + \frac{1+x}{x}} = \dfrac{1+x}{1+2x}$。$\blacksquare$
+</Solution>
+</Problem>
+
+---
+
+**下一节：** [1.2 数列的极限 →](/higher-math/ch1/s2)

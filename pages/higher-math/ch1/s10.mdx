@@ -1,0 +1,82 @@
+---
+title: 1.10 均值极限专题
+---
+
+import { Thm, Rmk } from '../../../components/MathBlock'
+import { Problem, Solution } from '../../../components/Problem'
+
+# 1.10 均值极限专题
+
+## 1.10.1 均值极限
+
+<Thm num={1} title="算术均值极限定理">
+若 $\lim_{n\to\infty} x_n = a$（有限值），则
+
+$$\lim_{n\to\infty}\frac{x_1 + x_2 + \cdots + x_n}{n} = a.$$
+
+**注**：逆命题不成立，如 $x_n = (-1)^n$ 发散，但算术均值趋于 $0$。
+</Thm>
+
+<Thm num={2} title="几何均值极限定理">
+若 $x_n > 0$ 且 $\lim_{n\to\infty} x_n = a > 0$，则
+
+$$\lim_{n\to\infty}\sqrt[n]{x_1 x_2 \cdots x_n} = a.$$
+
+推论：取 $x_k = k$，得 $\lim_{n\to\infty}\dfrac{\sqrt[n]{n!}}{n} = \dfrac{1}{e}$（Stirling 近似）。
+</Thm>
+
+<Problem num="例 1.10.1">
+设 $\lim_{n\to\infty}(x_{n+1} - x_n) = d$，证明 $\lim_{n\to\infty}\dfrac{x_n}{n} = d$。
+
+<Solution>
+令 $y_n = x_n - x_{n-1}$（$n \geq 2$），则 $\lim_{n\to\infty} y_n = d$。
+
+$$\frac{x_n}{n} = \frac{x_1 + (y_2 + y_3 + \cdots + y_n)}{n} = \frac{x_1}{n} + \frac{y_2 + \cdots + y_n}{n-1}\cdot\frac{n-1}{n}.$$
+
+由算术均值定理，$\dfrac{y_2+\cdots+y_n}{n-1} \to d$；又 $\dfrac{x_1}{n} \to 0$，$\dfrac{n-1}{n} \to 1$，故 $\dfrac{x_n}{n} \to d$。$\blacksquare$
+</Solution>
+</Problem>
+
+## 1.10.2 Stolz 公式
+
+<Thm num={3} title="Stolz 公式（离散 L'Hôpital 法则）">
+设 $\{b_n\}$ 严格单调递增趋于 $+\infty$，若
+
+$$\lim_{n\to\infty}\frac{a_{n+1} - a_n}{b_{n+1} - b_n} = L\quad(\text{有限或}\pm\infty),$$
+
+则 $\lim_{n\to\infty}\dfrac{a_n}{b_n} = L$。
+</Thm>
+
+<Rmk>
+Stolz 公式是处理 $\dfrac{*}{\infty}$ 型离散极限的利器，类比连续情形的 L'Hôpital 法则。
+</Rmk>
+
+<Problem num="例 1.10.2">
+计算 $\lim_{n\to\infty}\dfrac{1^k + 2^k + \cdots + n^k}{n^{k+1}}$（$k \in \mathbb{N}^+$）。
+
+<Solution>
+令 $a_n = \sum_{j=1}^n j^k$，$b_n = n^{k+1}$（严格单调递增趋 $+\infty$）。
+
+$$\frac{a_{n+1}-a_n}{b_{n+1}-b_n} = \frac{(n+1)^k}{(n+1)^{k+1}-n^{k+1}}.$$
+
+分母展开：$(n+1)^{k+1} - n^{k+1} = (k+1)n^k + O(n^{k-1})$，故
+
+$$\frac{(n+1)^k}{(k+1)n^k+O(n^{k-1})} \to \frac{1}{k+1}.$$
+
+由 Stolz 公式：$\displaystyle\lim_{n\to\infty}\frac{1^k+\cdots+n^k}{n^{k+1}} = \frac{1}{k+1}$。$\blacksquare$
+</Solution>
+</Problem>
+
+<Problem num="例 1.10.3">
+计算 $\lim_{n\to\infty}\dfrac{1^2 + 3^2 + 5^2 + \cdots + (2n-1)^2}{n^3}$。
+
+<Solution>
+$\sum_{k=1}^n(2k-1)^2 = 4\sum k^2 - 4\sum k + n = \dfrac{4n(n+1)(2n+1)}{6} - \dfrac{4n(n+1)}{2} + n = \dfrac{n(2n-1)(2n+1)}{3}$，故
+
+$$\lim_{n\to\infty}\frac{n(2n-1)(2n+1)/3}{n^3} = \lim_{n\to\infty}\frac{(2-1/n)(2+1/n)}{3} = \frac{4}{3}.\;\blacksquare$$
+</Solution>
+</Problem>
+
+---
+
+[← 返回第一章概览](/higher-math/ch1)

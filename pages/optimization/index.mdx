@@ -1,0 +1,32 @@
+---
+title: 优化理论
+---
+
+# ⚡ 优化理论
+
+训练一个神经网络，本质上就是在解一个优化问题：找到使损失函数最小的参数。优化理论告诉我们这个问题什么时候有解、怎么找解、以及为什么梯度下降有效。
+
+## 本章结构
+
+| 章节 | 内容 | AI 中的应用 |
+|------|------|------------|
+| [凸函数与凸集](/optimization/convex-functions) | 凸集、凸函数、Jensen 不等式 | 判断优化问题难度 |
+| [梯度下降](/optimization/gradient-descent) | GD、SGD、动量、Adam | 神经网络训练算法 |
+| [约束优化](/optimization/constrained) | 等式/不等式约束、KKT 条件 | 正则化、SVM |
+| [拉格朗日乘数法](/optimization/lagrange) | 拉格朗日函数、对偶问题 | SVM 推导、资源约束 |
+
+## 核心公式速查
+
+**梯度下降更新规则**
+
+$$\theta_{t+1} = \theta_t - \eta \nabla_\theta \mathcal{L}(\theta_t)$$
+
+**Adam 优化器**
+
+$$m_t = \beta_1 m_{t-1} + (1-\beta_1)g_t$$
+$$v_t = \beta_2 v_{t-1} + (1-\beta_2)g_t^2$$
+$$\theta_{t+1} = \theta_t - \frac{\eta}{\sqrt{\hat{v}_t} + \epsilon}\hat{m}_t$$
+
+**KKT 条件**（约束优化的核心）
+
+$$\nabla f(x^*) + \sum_i \mu_i \nabla g_i(x^*) = 0, \quad \mu_i \geq 0$$

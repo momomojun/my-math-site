@@ -1,0 +1,78 @@
+---
+title: 1.9 递推极限专题
+---
+
+import { Def, Thm, Rmk } from '../../../components/MathBlock'
+import { Problem, Solution } from '../../../components/Problem'
+
+# 1.9 递推极限专题
+
+<Thm num={1} title="递推数列标准解法（单调有界法）">
+对 $x_{n+1} = g(x_n)$，三步走：
+
+1. **猜测并证明有界**（通常用归纳法）；
+2. **证明单调**（计算 $x_{n+1} - x_n$ 或利用 $g$ 的单调性）；
+3. **令 $L = \lim x_n$，由 $L = g(L)$ 解方程**（注意结合有界范围排除增根）。
+</Thm>
+
+## 1.9.1 求通项计算
+
+<Problem num="例 1.9.1">
+设 $x_1 = \sqrt{6}$，$x_{n+1} = \sqrt{6 + x_n}$，求 $\lim_{n\to\infty} x_n$。
+
+<Solution>
+**有界**：$x_1 = \sqrt{6} < 3$；若 $x_n < 3$，则 $x_{n+1} = \sqrt{6+x_n} < \sqrt{9} = 3$。故 $x_n < 3$。
+
+**单调**：$x_2 = \sqrt{6+\sqrt{6}} > \sqrt{6} = x_1$；若 $x_n > x_{n-1}$（即 $x_n$ 单调增），则 $x_{n+1} = \sqrt{6+x_n} > \sqrt{6+x_{n-1}} = x_n$，单调递增。
+
+**极限**：$L = \sqrt{6+L}$，$L^2 - L - 6 = 0$，$(L-3)(L+2)=0$，故 $L = 3$（舍 $L=-2$）。$\blacksquare$
+</Solution>
+</Problem>
+
+<Problem num="例 1.9.2">
+设 $x_1 = 1$，$x_{n+1} = \dfrac{1}{2+x_n}$，求 $\lim_{n\to\infty} x_n$。
+
+<Solution>
+**有界**：$x_n \in (0,1)$（$x_1=1$；若 $x_n \in [0,1]$，则 $x_{n+1} = \frac{1}{2+x_n} \in [\frac{1}{3}, \frac{1}{2}]$）。
+
+**单调性分析**：交错单调——取偶数和奇数子列分别单调，总极限相同，故直接解方程：$L = \dfrac{1}{2+L}$，即 $L^2 + 2L - 1 = 0$，$L = -1 + \sqrt{2}$（取正根）。$\blacksquare$
+</Solution>
+</Problem>
+
+## 1.9.2 有界变差
+
+<Problem num="例 1.9.3">
+设 $x_1 > 0$，$x_{n+1} = \dfrac{1}{2}\!\left(x_n + \dfrac{a}{x_n}\right)$（$a > 0$，Newton 迭代法求 $\sqrt{a}$），证明收敛并求极限。
+
+<Solution>
+由 AM-GM 不等式，$n \geq 1$ 时 $x_{n+1} = \dfrac{1}{2}\!\left(x_n+\dfrac{a}{x_n}\right) \geq \sqrt{a}$，故 $x_n \geq \sqrt{a}$（$n \geq 2$）。
+
+当 $n \geq 2$，$x_{n+1} - x_n = \dfrac{a - x_n^2}{2x_n} \leq 0$（因 $x_n \geq \sqrt{a}$），单调递减有下界，极限存在。
+
+$L = \dfrac{1}{2}(L + a/L) \Rightarrow L^2 = a \Rightarrow L = \sqrt{a}$。$\blacksquare$
+</Solution>
+</Problem>
+
+## 1.9.3 压缩映射
+
+<Thm num={2} title="压缩映射定理">
+若 $g$ 在区间 $I$ 上满足 $|g(x) - g(y)| \leq k|x-y|$（$0 < k < 1$），则迭代列 $x_{n+1} = g(x_n)$ 收敛到唯一不动点 $L = g(L)$，且
+
+$$|x_n - L| \leq \frac{k^{n-1}}{1-k}|x_2 - x_1|.$$
+</Thm>
+
+## 1.9.4 不动点方法
+
+<Problem num="例 1.9.4">
+设 $x_1 = \cos 1$，$x_{n+1} = \cos x_n$，证明 $\{x_n\}$ 收敛。
+
+<Solution>
+$g(x) = \cos x$，$|g'(x)| = |\sin x| \leq \sin 1 < 1$（$x \in [0,1]$ 时）。由压缩映射，迭代列收敛。
+
+不动点满足 $L = \cos L$（Dottie Number，$L \approx 0.7391$）。$\blacksquare$
+</Solution>
+</Problem>
+
+---
+
+**下一节：** [1.10 均值极限专题 →](/higher-math/ch1/s10)

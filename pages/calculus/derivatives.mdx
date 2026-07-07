@@ -1,0 +1,95 @@
+---
+title: 导数与微分
+---
+
+import { Callout } from 'nextra/components'
+
+# 2. 导数与微分
+
+导数是微积分最核心的概念，也是理解反向传播的关键。简单说：**导数就是函数在某一点的变化率**。
+
+## 直觉理解
+
+想象你在开车，速度表显示的就是"位移对时间的导数"。速度不是"过去一段时间的平均速度"，而是**此刻**的瞬时变化率。
+
+$$f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}$$
+
+这个极限定义就是导数的本质——把"变化区间"缩小到无穷小时的变化率。
+
+## 常用求导公式
+
+| 函数 $f(x)$ | 导数 $f'(x)$ |
+|-------------|-------------|
+| $c$（常数） | $0$ |
+| $x^n$ | $nx^{n-1}$ |
+| $e^x$ | $e^x$ |
+| $\ln x$ | $\dfrac{1}{x}$ |
+| $\sin x$ | $\cos x$ |
+| $\cos x$ | $-\sin x$ |
+| $\sigma(x) = \dfrac{1}{1+e^{-x}}$ | $\sigma(x)(1-\sigma(x))$ |
+
+最后一行是 **sigmoid 激活函数**的导数，神经网络反向传播中频繁用到。
+
+## 求导法则
+
+**乘积法则**
+
+$$(fg)' = f'g + fg'$$
+
+**链式法则**（最重要！）
+
+$$\frac{d}{dx}[f(g(x))] = f'(g(x)) \cdot g'(x)$$
+
+<Callout type="info" emoji="🔑">
+**链式法则在 AI 中的地位**
+
+反向传播算法的核心就是链式法则的重复应用。神经网络是一个复合函数，计算损失对参数的梯度，等价于对每一层依次用链式法则"剥洋葱"。
+</Callout>
+
+## 链式法则示例
+
+设 $y = (3x^2 + 1)^5$，求 $\dfrac{dy}{dx}$。
+
+令 $u = 3x^2 + 1$，则 $y = u^5$。
+
+$$\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx} = 5u^4 \cdot 6x = 30x(3x^2+1)^4$$
+
+## 反向传播中的链式法则
+
+对于一个两层神经网络：
+
+$$\mathcal{L} = \text{loss}(\hat{y}), \quad \hat{y} = \sigma(w_2 \cdot \sigma(w_1 \cdot x))$$
+
+用链式法则求损失对 $w_1$ 的梯度：
+
+$$\frac{\partial \mathcal{L}}{\partial w_1} = \frac{\partial \mathcal{L}}{\partial \hat{y}} \cdot \frac{\partial \hat{y}}{\partial z_2} \cdot \frac{\partial z_2}{\partial z_1} \cdot \frac{\partial z_1}{\partial w_1}$$
+
+每一项都是简单的导数，链接在一起就完成了梯度的反向传播。
+
+## Python 代码
+
+```python
+import numpy as np
+
+# sigmoid 及其导数
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
+
+def sigmoid_derivative(x):
+    s = sigmoid(x)
+    return s * (1 - s)
+
+x = np.array([0.0, 1.0, 2.0])
+print(sigmoid(x))            # [0.5, 0.731, 0.880]
+print(sigmoid_derivative(x)) # [0.25, 0.197, 0.105]
+```
+
+## 练习
+
+1. 求 $f(x) = x^3 e^x$ 的导数。
+2. 用链式法则求 $f(x) = \ln(\sin(x^2))$ 的导数。
+3. 证明 sigmoid 函数的导数确实是 $\sigma(x)(1-\sigma(x))$。
+
+---
+
+**下一节：** [积分 →](/calculus/integration)

@@ -1,0 +1,92 @@
+---
+title: 1.5 极限收敛准则
+---
+
+import { Def, Thm, Rmk } from '../../../components/MathBlock'
+import { Problem, Solution } from '../../../components/Problem'
+
+# 1.5 极限收敛准则
+
+## 1.5.1 迫敛准则
+
+<Thm num={1} title="迫敛准则（夹逼定理）">
+**数列版**：若 $\exists\, N_0$，当 $n > N_0$ 时有 $y_n \leq x_n \leq z_n$，且
+
+$$\lim_{n\to\infty} y_n = \lim_{n\to\infty} z_n = a,$$
+
+则 $\lim_{n\to\infty} x_n = a$。
+
+**函数版**：若 $g(x) \leq f(x) \leq h(x)$ 在 $a$ 附近成立，且 $\lim g = \lim h = L$，则 $\lim f = L$。
+</Thm>
+
+<Problem num="例 1.5.1">
+计算 $\lim_{n\to\infty}\left(\dfrac{1}{\sqrt{n^2+1}} + \dfrac{1}{\sqrt{n^2+2}} + \cdots + \dfrac{1}{\sqrt{n^2+n}}\right)$。
+
+<Solution>
+令 $S_n = \sum_{k=1}^n \dfrac{1}{\sqrt{n^2+k}}$。利用放缩：
+
+$$\frac{n}{\sqrt{n^2+n}} \leq S_n \leq \frac{n}{\sqrt{n^2+1}}.$$
+
+两端极限均为 $\lim_{n\to\infty}\dfrac{n}{\sqrt{n^2+n}} = \lim_{n\to\infty}\dfrac{1}{\sqrt{1+1/n}} = 1$，由夹逼得 $\lim S_n = 1$。$\blacksquare$
+</Solution>
+</Problem>
+
+<Problem num="例 1.5.2">
+证明 $\lim_{n\to\infty}\sqrt[n]{n} = 1$。
+
+<Solution>
+令 $h_n = \sqrt[n]{n} - 1 \geq 0$（$n \geq 1$）。当 $n \geq 2$，由二项式展开：
+
+$$n = (1+h_n)^n \geq \binom{n}{2}h_n^2 = \frac{n(n-1)}{2}h_n^2,$$
+
+故 $0 \leq h_n \leq \sqrt{\dfrac{2}{n-1}} \to 0$。由夹逼定理，$h_n \to 0$，即 $\sqrt[n]{n} \to 1$。$\blacksquare$
+</Solution>
+</Problem>
+
+## 1.5.2 单调有界准则
+
+<Thm num={2} title="单调有界准则">
+**单调递增有上界**的数列必收敛；**单调递减有下界**的数列必收敛。
+
+标准用法（递推数列）：①证有界；②证单调；③令极限满足方程求解。
+</Thm>
+
+<Problem num="例 1.5.3">
+设 $x_1 = 1$，$x_{n+1} = \sqrt{2 + x_n}$，证明极限存在并求之。
+
+<Solution>
+**有界性（归纳）**：$x_1 = 1 < 2$；若 $x_n < 2$，则 $x_{n+1} = \sqrt{2+x_n} < \sqrt{4} = 2$，故 $x_n < 2$。
+
+**单调性**：$x_{n+1} - x_n = \sqrt{2+x_n} - x_n$，令 $f(t) = \sqrt{2+t} - t$，$f(1) = \sqrt{3} - 1 > 0$，$f'(t) = \dfrac{1}{2\sqrt{2+t}} - 1 < 0$（当 $t > 0$），而 $f(2) = 0$，故 $x_n < 2$ 时 $x_{n+1} > x_n$，单调递增。
+
+**极限**：设 $L = \lim x_n$，则 $L = \sqrt{2+L}$，解 $L^2 - L - 2 = 0$ 得 $L = 2$（舍 $L = -1$）。$\blacksquare$
+</Solution>
+</Problem>
+
+## 1.5.3 柯西准则
+
+<Thm num={3} title="Cauchy 收敛准则">
+数列 $\{x_n\}$ 收敛 $\iff$ $\forall\,\varepsilon > 0$，$\exists\, N$，$m, n > N$ 时 $|x_m - x_n| < \varepsilon$。
+
+此类数列称为 **Cauchy 列（基本列）**。
+</Thm>
+
+<Rmk>
+Cauchy 准则常用于**证明发散**：若能找到 $\varepsilon_0 > 0$ 和 $m_k, n_k \to \infty$ 使 $|x_{m_k} - x_{n_k}| \geq \varepsilon_0$，则数列发散。
+</Rmk>
+
+<Problem num="例 1.5.4">
+证明调和级数的部分和 $S_n = 1 + \dfrac{1}{2} + \cdots + \dfrac{1}{n}$ 发散。
+
+<Solution>
+取 $m = 2n$，则
+
+$$|S_{2n} - S_n| = \frac{1}{n+1} + \frac{1}{n+2} + \cdots + \frac{1}{2n} \geq n \cdot \frac{1}{2n} = \frac{1}{2}.$$
+
+取 $\varepsilon_0 = \dfrac{1}{4}$，对任意 $N$，取 $n > N$，则 $|S_{2n} - S_n| \geq \dfrac{1}{2} > \varepsilon_0$，故 $\{S_n\}$ 不满足 Cauchy 条件，**发散**。$\blacksquare$
+</Solution>
+</Problem>
+
+---
+
+**下一节：** [1.6 重要极限与等价无穷小 →](/higher-math/ch1/s6)

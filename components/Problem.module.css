@@ -1,0 +1,132 @@
+.prob {
+  padding: 4px 0 2px;
+  margin: 1.4em 0;
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.num {
+  font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+  font-size: 13px;
+  font-weight: 600;
+  color: #284c3e;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+:global(.dark) .num {
+  color: #5fa880;
+}
+
+.text {
+  font-size: 15.5px;
+  line-height: 1.72;
+  color: #23291f;
+  font-weight: 500;
+}
+
+:global(.dark) .text {
+  color: #d8e0da;
+}
+
+/* 分割线 + 折叠按钮 */
+.divider {
+  display: flex;
+  align-items: center;
+  margin-top: 14px;
+}
+
+.line {
+  flex: 1;
+  height: 1px;
+  background: #e3e7e3;
+}
+
+:global(.dark) .line {
+  background: #2e3830;
+}
+
+.arrow {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  margin-left: 8px;
+  border: 1px solid #dce6df;
+  border-radius: 50%;
+  background: #fff;
+  color: #6a8574;
+  font-size: 11px;
+  cursor: pointer;
+  transition: transform 0.25s ease, background 0.15s, border-color 0.15s, color 0.15s;
+  line-height: 1;
+}
+
+:global(.dark) .arrow {
+  background: #1a2420;
+  border-color: #2e3d35;
+  color: #5a7a6a;
+}
+
+.arrow:hover {
+  background: #eef3ef;
+  border-color: #cdddd3;
+  color: #284c3e;
+}
+
+:global(.dark) .arrow:hover {
+  background: #1f2e28;
+  color: #5fa880;
+}
+
+.arrowOpen {
+  transform: rotate(180deg);
+}
+
+/* 折叠面板动画 */
+.panel {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  margin-top: 0;
+  transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.3s ease;
+}
+
+.panelOpen {
+  max-height: 3000px;
+  opacity: 1;
+  margin-top: 14px;
+}
+
+.solution {
+  font-size: 15px;
+  line-height: 1.82;
+  color: #3a423c;
+  padding: 14px 18px;
+  background: #f9fbf9;
+  border-radius: 8px;
+  border: 1px solid #e4e9e5;
+}
+
+:global(.dark) .solution {
+  background: #141e19;
+  border-color: #1e2e26;
+  color: #b8c8be;
+}
+
+.solLabel {
+  display: block;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: #9aa19c;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}

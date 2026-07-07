@@ -1,0 +1,35 @@
+---
+title: AI数学专题
+---
+
+# 🤖 AI数学专题
+
+这一章是专为 AI 时代定制的数学专题。不是系统地教数学，而是直接从 AI 论文和算法出发，把你最需要的数学工具讲透。
+
+## 本章结构
+
+| 章节 | 内容 | 用在哪里 |
+|------|------|----------|
+| [矩阵微积分](/ai-math/matrix-calculus) | 向量/矩阵对向量/矩阵的导数 | 反向传播推导、论文阅读 |
+| [信息论基础](/ai-math/information-theory) | 熵、KL 散度、互信息 | 损失函数、VAE、GAN |
+| [神经网络的数学](/ai-math/nn-math) | 反向传播完整推导 | 深度理解训练过程 |
+| [PCA 与 SVD](/ai-math/pca-svd) | 主成分分析、奇异值分解 | 降维、特征提取 |
+| [Attention 机制的数学](/ai-math/attention-math) | Scaled Dot-Product Attention | Transformer 原理 |
+
+## 核心公式速查
+
+**交叉熵损失**（分类问题标配）
+
+$$\mathcal{L} = -\sum_i y_i \log \hat{y}_i$$
+
+**KL 散度**（衡量分布之间的距离）
+
+$$D_{KL}(P \| Q) = \sum_x P(x) \log \frac{P(x)}{Q(x)}$$
+
+**Scaled Dot-Product Attention**
+
+$$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$$
+
+## 为什么有这一章？
+
+学完前面的基础课程后，很多人还是看不懂 AI 论文里的数学。原因是：**基础数学** 和 **AI 论文里的数学符号体系** 之间有一个鸿沟。这一章专门填补这个鸿沟。

@@ -1,0 +1,84 @@
+---
+title: 1.8 一致连续
+---
+
+import { Def, Thm, Rmk } from '../../../components/MathBlock'
+import { Problem, Solution } from '../../../components/Problem'
+
+# 1.8 一致连续
+
+## 1.8.1 一致连续概念
+
+<Def num={1} title="一致连续">
+若对任意 $\varepsilon > 0$，存在 $\delta > 0$（只与 $\varepsilon$ 有关，与 $x$ 的位置**无关**），使对区间 $I$ 上**任意** $x_1, x_2$，只要 $|x_1 - x_2| < \delta$ 就有 $|f(x_1) - f(x_2)| < \varepsilon$，则称 $f$ 在 $I$ 上**一致连续**。
+</Def>
+
+<Rmk>
+**直观对比**：普通连续中 $\delta$ 可以随点 $x$ 变化（如 $y=x^2$，越大处需越小的 $\delta$）；一致连续要求一个 $\delta$ 对全局所有点统一适用。
+</Rmk>
+
+## 1.8.2 一致连续性质
+
+<Thm num={1} title="一致连续的否定刻画（常用于反证）">
+$f$ 在 $I$ 上**不**一致连续 $\iff$ $\exists\,\varepsilon_0 > 0$ 和两列点 $\{x_n'\}, \{x_n''\} \subset I$，满足：
+
+$$|x_n' - x_n''| \to 0 \quad \text{但} \quad |f(x_n') - f(x_n'')| \geq \varepsilon_0.$$
+</Thm>
+
+## 1.8.3 康托定理
+
+<Thm num={2} title="Cantor 定理">
+若 $f \in C[a,b]$（有界闭区间上连续），则 $f$ 在 $[a,b]$ 上**一致连续**。
+
+**意义**：有界闭区间是保证一致连续的充分条件，开区间、无界区间上连续函数未必一致连续。
+</Thm>
+
+## 1.8.4 利普希思条件
+
+<Thm num={3} title="Lipschitz 条件">
+若 $\exists\, L > 0$ 使 $|f(x_1) - f(x_2)| \leq L|x_1 - x_2|$ 对 $I$ 上所有 $x_1, x_2$ 成立，则 $f$ 在 $I$ 上一致连续（取 $\delta = \varepsilon/L$）。
+
+**推论**：若 $f$ 在 $I$ 上可导且 $|f'(x)| \leq M$，则 $f$ 满足 $L=M$ 的 Lipschitz 条件，从而一致连续。
+</Thm>
+
+<Problem num="例 1.8.1">
+证明 $f(x) = \sin x$ 在 $\mathbb{R}$ 上一致连续。
+
+<Solution>
+$$|\sin x_1 - \sin x_2| = \left|2\cos\frac{x_1+x_2}{2}\sin\frac{x_1-x_2}{2}\right| \leq 2\left|\frac{x_1-x_2}{2}\right| = |x_1-x_2|.$$
+
+这是 $L=1$ 的 Lipschitz 条件，故 $\sin x$ 在 $\mathbb{R}$ 上一致连续。$\blacksquare$
+</Solution>
+</Problem>
+
+<Problem num="例 1.8.2">
+证明 $f(x) = x^2$ 在 $[0, +\infty)$ 上**不**一致连续。
+
+<Solution>
+取 $x_n' = \sqrt{n+1}$，$x_n'' = \sqrt{n}$，则
+
+$$|x_n' - x_n''| = \sqrt{n+1} - \sqrt{n} = \frac{1}{\sqrt{n+1}+\sqrt{n}} \to 0,$$
+
+但 $|f(x_n') - f(x_n'')| = (n+1) - n = 1 \not\to 0$。
+
+取 $\varepsilon_0 = \dfrac{1}{2}$，由否定刻画，$x^2$ 在 $[0,+\infty)$ 上**不一致连续**。$\blacksquare$
+</Solution>
+</Problem>
+
+<Problem num="例 1.8.3">
+$f(x) = \sqrt{x}$ 在 $[0, +\infty)$ 上是否一致连续？
+
+<Solution>
+对 $x_1, x_2 \geq 0$，利用 $|\sqrt{x_1} - \sqrt{x_2}| = \dfrac{|x_1-x_2|}{\sqrt{x_1}+\sqrt{x_2}}$。
+
+当 $x_1, x_2 \geq 1$ 时，$\sqrt{x_1}+\sqrt{x_2} \geq 2$，故 $|\sqrt{x_1}-\sqrt{x_2}| \leq \dfrac{|x_1-x_2|}{2}$（Lipschitz $L=\frac{1}{2}$）。
+
+当 $x_1, x_2 \in [0,1]$ 时，由 Cantor 定理，$\sqrt{x}$ 在 $[0,1]$ 上一致连续。
+
+综合两种情况（分析细节见习题），$\sqrt{x}$ 在 $[0,+\infty)$ 上**一致连续**。$\blacksquare$
+</Solution>
+</Problem>
+
+---
+
+**下一节：** [1.9 递推极限专题 →](/higher-math/ch1/s9)

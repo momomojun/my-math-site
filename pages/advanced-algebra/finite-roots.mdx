@@ -1,0 +1,81 @@
+---
+title: 1.8 多项式根的有限性
+---
+
+import { Callout } from 'nextra/components'
+
+# 1.8 多项式根的有限性
+
+<Callout type="default" emoji="📐">
+**核心原则**：非零多项式的根只有有限个（根的个数 $\leq$ 多项式次数）。如果能证明某个多项式有无穷多个根，则它只能是零多项式。
+</Callout>
+
+## 例题
+
+**例题 1**：已知 $f(x)$ 是非零多项式，且 $f(x) \mid f(x^n)$，则 $f(x)$ 的根只能是 $0$ 或单位根。
+
+**解答**：由 $f(x) \mid f(x^n)$，若 $\alpha$ 是 $f(x)$ 的根，则 $\alpha^n$ 也是 $f(x)$ 的根（代入 $x = \alpha$）。
+
+依次推导：$\alpha, \alpha^n, \alpha^{n^2}, \alpha^{n^3}, \ldots$ 都是 $f(x)$ 的根。
+
+但 $f(x)$ 的根只有有限个，故存在 $1 \leq k < l$ 使得 $\alpha^{n^k} = \alpha^{n^l}$，即
+
+$$\alpha^{n^k}(\alpha^{n^l - n^k} - 1) = 0.$$
+
+故 $\alpha = 0$ 或 $\alpha$ 是单位根（$\alpha^{n^l - n^k} = 1$）。$\blacksquare$
+
+---
+
+**例题 2**：已知 $f(x)$ 是 $n$ 次多项式，且 $f(k) = \dfrac{k}{k+1}$（$k = 0, 1, 2, \ldots, n$），求 $f(n+1)$。
+
+**解答**：令 $F(x) = (x+1)f(x) - x$，则 $F(x)$ 是 $n+1$ 次多项式，且
+
+$$F(k) = (k+1)f(k) - k = (k+1) \cdot \frac{k}{k+1} - k = 0 \quad (k = 0, 1, \ldots, n).$$
+
+$F(x)$ 有 $n+1$ 个根 $0, 1, \ldots, n$，且次数为 $n+1$，故
+
+$$F(x) = c\, x(x-1)(x-2)\cdots(x-n).$$
+
+又 $f(x)$ 是多项式，$x+1 \mid F(x) + x = x + cx(x-1)\cdots(x-n)$，故 $-1$ 是分子的根：
+
+$$-1 + c(-1)(-2)\cdots(-n-1) = 0 \implies c = \frac{(-1)^{n+1}}{(n+1)!}.$$
+
+因此
+
+$$f(n+1) = \frac{(n+1) + c \cdot (n+1)!}{n+2} = \frac{(n+1) + (-1)^{n+1}}{n+2} = \frac{n+1+(-1)^{n+1}}{n+2}. \quad \blacksquare$$
+
+---
+
+**习题 1**：设多项式 $f(x)$ 满足 $f(x^2+1) = f^2(x) + 1$ 且 $f(0) = 0$，证明 $f(x) = x$。
+
+**解答**：由 $f(0) = 0$ 得 $f(1) = 1$，$f(2) = f(1^2+1) = f^2(1)+1 = 2$，……递推得无穷多个正整数 $n$ 满足 $f(n) = n$。
+
+故 $F(x) = f(x) - x$ 有无穷多个根，从而 $F(x) \equiv 0$，即 $f(x) = x$。$\blacksquare$
+
+---
+
+**习题 2**：若 $f(x)$ 是数域 $P$ 上的多项式，且 $f(x) = f(x+a)$（$a \in P$ 非零），证明 $f(x)$ 是常数多项式。
+
+**解答**：令 $F(x) = f(x) - f(0)$，则 $F(0) = 0$ 且 $F(x) = F(x+a)$，故
+
+$$F(0) = F(a) = F(2a) = \cdots = 0.$$
+
+$F(x)$ 有无穷多个根，故 $F(x) \equiv 0$，即 $f(x) \equiv f(0)$ 为常数。$\blacksquare$
+
+---
+
+**习题 3**：求所有满足 $(x-1)f(x+1) = (x+2)f(x)$ 的实系数多项式 $f(x)$。
+
+**解答**：由原式：$x-1 \mid f(x)$ 且 $x+2 \mid f(x+1)$，由余数定理得 $f(1) = 0$，$f(-2) = 0$。
+
+但代 $x = -1$：$(-2)f(0) = (1)f(-1)$；代 $x = 0$：$(-1)f(1) = 2f(0)$，得 $f(0) = 0$，即 $f(-1) = 0$。
+
+故 $(x-1)(x+1) \mid f(x)$，设 $f(x) = (x^2-1)g(x)$，代入化简得 $xg(x+1) = (x+1)g(x)$。
+
+同理 $g(0) = 0$，设 $g(x) = xh(x)$，代入得 $h(x+1) = h(x)$，故 $h(x)$ 是常数 $k$。
+
+$$f(x) = k\, x(x^2-1) = k\, x(x-1)(x+1),\quad k \in \mathbb{R}. \quad \blacksquare$$
+
+---
+
+**下一节：** [1.9 多项式分解问题 →](/advanced-algebra/factorization)

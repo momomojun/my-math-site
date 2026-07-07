@@ -1,0 +1,32 @@
+---
+title: 概率与统计
+---
+
+# 🎲 概率与统计
+
+机器学习在本质上是一个统计问题：从数据中推断规律，在不确定性中做决策。概率论给了我们描述不确定性的语言，统计学给了我们从数据中学习的工具。
+
+## 本章结构
+
+| 章节 | 内容 | AI 中的应用 |
+|------|------|------------|
+| [概率基础](/probability/basics) | 概率空间、条件概率、独立性 | 模型假设、事件推理 |
+| [随机变量](/probability/random-variables) | 离散/连续随机变量、CDF、PDF | 数据建模 |
+| [常用概率分布](/probability/distributions) | 高斯、伯努利、泊松分布 | 损失函数设计、生成模型 |
+| [期望与方差](/probability/expectation) | 期望、方差、协方差、相关系数 | 模型评估、特征分析 |
+| [贝叶斯推断](/probability/bayesian) | 贝叶斯定理、先验/后验 | 贝叶斯神经网络、不确定性量化 |
+| [统计推断](/probability/statistics) | 假设检验、置信区间、MLE | 模型训练、A/B 测试 |
+
+## 核心公式速查
+
+**贝叶斯定理**（AI 中最重要的公式之一）
+
+$$P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}$$
+
+**高斯分布**
+
+$$f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$
+
+**最大似然估计**
+
+$$\hat{\theta} = \arg\max_\theta \prod_{i=1}^n P(x_i|\theta)$$
